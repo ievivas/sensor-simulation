@@ -1,0 +1,12 @@
+bot-token: 
+143736528:AAExJNxaLVdjDwvyyorcknZiDf8r65azj8I
+
+https://api.telegram.org/bot<token>/METHOD_NAME
+
+https://api.telegram.org/bot143736528:AAExJNxaLVdjDwvyyorcknZiDf8r65azj8I/getMe
+
+https://api.telegram.org/bot143736528:AAExJNxaLVdjDwvyyorcknZiDf8r65azj8I/getUpdates
+
+Chat_id del grupo SensoresSimGrupo: -38984406
+Send Message:
+https://api.telegram.org/bot143736528:AAExJNxaLVdjDwvyyorcknZiDf8r65azj8I/sendMessage?chat_id=-38984406&text=Hola%20Mundo

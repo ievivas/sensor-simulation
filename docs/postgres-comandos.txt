@@ -23,6 +23,9 @@ Crear tabla:
 Ver todo el contenido de la tabla:
 	SELECT * FROM MEASUREMENTS;
 
+Borrar todo el contenido de la tabla:
+	DELETE FROM MEASUREMENTS;
+
 Descripción de la tabla:
 	\d "nombreTabla";
 
