@@ -1,0 +1,33 @@
+Para entrar al servidor:
+	psql -U postgres - h localhost
+
+Crear database:
+	create database "nombre";
+
+Listar las databases:
+	\l
+
+Borrar databse:
+	drop database "nombre";
+
+Conectar a database para trabajar en ella:
+	\c "nombre";
+
+Crear schema para poder crear tablas:
+	create schema "nombre";
+
+Crear tabla:
+	CREATE TABLE MEASUREMENTS (date timestamp PRIMARY KEY NOT NULL, sensorid integer NOT NULL, temperature integer NOT NULL, humidity integer NOT NULL);
+
+
+Ver todo el contenido de la tabla:
+	SELECT * FROM MEASUREMENTS;
+
+Descripción de la tabla:
+	\d "nombreTabla";
+
+Insertar datos a la tabla:
+	INSERT INTO measurements VALUES (1000, '2015-11-21', 25, 50);
+
+Para la fecha con fecha y hora actual;
+ Se crea una columna de nombre "Date" de tipo Timestamp. En propiedadas, en Default Value colocar now()

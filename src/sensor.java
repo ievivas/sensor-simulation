@@ -2,9 +2,9 @@ import java.sql.*;
 
 public class sensor {
 	public static void main(String args[]) {
-		//System.out.print("Hola Mundo");
 		Connection conexion = null;
 	    Statement stmt = null;
+	    String sql;
 	    
 	    int radomNforT;
 	    int radomNforH;   
@@ -14,9 +14,11 @@ public class sensor {
 	    	 
 	         //Insertar 50 registros a la BD 
 	         for (int i=0; i<50; i++) {
+
+	         	 //Valores aleatorios para registros
+	      	   	 sensorID = radomNumber("sensor");
 	        	 radomNforT = radomNumber("temperatura");
 	        	 radomNforH = radomNumber("humedad");
-	        	 //System.out.print(radomNforT + "\n");
 	        	 
 	        	 //Abrir conexion a DB
 		         Class.forName("org.postgresql.Driver");
@@ -24,35 +26,30 @@ public class sensor {
 		            .getConnection("jdbc:postgresql://localhost:5432/sensordb",
 		            "postgres", "MrPopo13");
 		         conexion.setAutoCommit(false);
-		         System.out.println("Base de datos abierta");
+		        //System.out.println("Base de datos abierta");
 		         stmt = conexion.createStatement();
-	        	
-	      	   	 //Sensor ID
-	      	   	 sensorID = radomNumber("sensor");
 	      	   	
 	      	   	 //Insertar valores a DB. La fecha es insertada automáticamente por la base de datos
-		         String sql = "INSERT INTO measurements (sensorid, temperature, humidity) "
+		         sql = "INSERT INTO measurements (sensorid, temperature, humidity) "
 		              + "VALUES (" + sensorID + "," + radomNforT + "," + radomNforH + ");";
 		         stmt.executeUpdate(sql);
-		         System.out.println("Registro " + (i+1) + " insertado");
+		         //System.out.println("Registro " + (i+1) + " insertado");
 		        
 		         //Cerrar conexion
 		         stmt.close();
 		         conexion.commit();
 		         conexion.close();
-		         System.out.println("Base de datos cerrada");
+		         //System.out.println("Base de datos cerrada");
 		        
-		         //Pausa por 2 segundos
-		         Thread.sleep(2000);
-	         }
-	         
-	         
-	         
-	        
+		         //Pausar por 1 segundo
+		         Thread.sleep(1000);
+	         }//Fin for
+	    
 	      } catch (Exception e) {
 	         System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 	         System.exit(0);
 	      }
+	      
 	      System.out.println("Todos los registros insertados");
 	   }//Fin Main
 	
