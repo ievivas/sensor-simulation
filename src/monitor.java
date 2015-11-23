@@ -2,8 +2,6 @@ import java.sql.*;
 import java.io.*;
 import java.net.*;
 
-
-
 public class monitor {
 	public static void main(String args[]) {
 		Connection conexion = null;
@@ -23,7 +21,7 @@ public class monitor {
 	    
 		try {
 	    
-	    	//Consultar último registro, 5 veces 
+	    	//Consultar último registro, 10 veces 
 	    	for (int i=0; i<10; i++) {
 	    		
        	 		//Abrir conexion a DB
@@ -59,23 +57,23 @@ public class monitor {
 		         //ALARMAS
 		         if ((temperatura < 40)||(temperatura > 45)) {
 		        	//System.out.println( "ALARMA: Temperatura = " + temperatura );
-		        	 mensajeT = "ALARMA: " + 
-		        			 	"Medicion fuera del rango normal. " +
-		        			 	"Temperatura = " + temperatura + " gC," +
-		        			 	" en el sensor " + sensorID;
+		        	 mensajeT = "ALARMA:%20" + 
+		        			 	"Medici%C3%B3n%20fuera%20del%20rango%20normal.%20" +
+		        			 	"Temperatura%20=%20" + temperatura + "%20%C2%BAC," +
+		        			 	"%20en%20el%20sensor%20" + sensorID;
 		        	 enviarMensajeBot(sub_url1, botToken, chat_id, mensajeT);
 		         }
 		         if ((humedad < 60)||(humedad > 80)) {
 		        	 //System.out.println( "ALARMA: Humedad = " + humedad );
-		        	 mensajeH = "ALARMA: " + 
-		        			 	"Medicion fuera del rango normal. " +
-		        			 	"%20Humedad = " + humedad + " %20%," +
-		        			 	" en el sensor " + sensorID;
+		        	 mensajeH = "ALARMA:%20" + 
+		        			 	"medici%C3%B3n%20fuera%20del%20rango%20normal.%20" +
+		        			 	"%20Humedad%20=%20" + humedad + "%25," +
+		        			 	"%20en%20el%20sensor%20" + sensorID;
 		        	 enviarMensajeBot(sub_url1, botToken, chat_id, mensajeH);
 		         }
 	        
-		         //Pausa por 10 segundos
-		         Thread.sleep(10000);
+		         //Pausa por 5 segundos
+		         Thread.sleep(5000);
 	    	}//Fin for
    
 	    } catch (Exception e) {
@@ -87,7 +85,7 @@ public class monitor {
 
 	}//Fin Main
 	
-	public static String enviarMensajeBot(String sub_url1, String botToken, String chat_id, String mensaje) throws Exception {
+	public static void enviarMensajeBot(String sub_url1, String botToken, String chat_id, String mensaje) throws Exception {
 		String urlString = sub_url1 + "bot" + botToken + "/sendMessage?" + "chat_id=" + chat_id + "&text=" + mensaje;
 		
 		URL url = new URL(urlString);
@@ -100,8 +98,7 @@ public class monitor {
         while ((decodedString = in.readLine()) != null) {
             System.out.println(decodedString);
         }
-        in.close();
-		return urlString; 
+        in.close(); 
 	}
 
 }//Fin Class Monitor
